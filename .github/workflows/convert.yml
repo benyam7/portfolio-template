@@ -46,8 +46,11 @@ jobs:
         with:
           fetch-depth: 1
       - name: write to repo
+        uses: actions/download-artifact@v2
+        with:
+          name: resume
         run: |
-          printf '%b\n' "<p>hello </p>" > test.html
+          printf '%b\n' resume.pdf  > resume.pdf
       - name: Push changes to repo
         run: |
           REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
