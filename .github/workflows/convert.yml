@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  upload_file:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -44,31 +44,37 @@ jobs:
           name: resume
           path: cv
 
-  download_cv:
-    name: download cv
-    runs-on; ubuntu-latest
-    needs: upload_file
-    steps:
-      - uses: actions/download-artifact@v1
+      - name: download_cv
+        uses: actions/download-artifact@v1
         with:
           name: resume
-      - run: cat resume.pdf
+        run: cat resume.pdf
 
-    # - uses: actions/checkout@master
-    #   with:
-    #     fetch-depth: 1
-    # - name: write to repo
-    #   run: |
-    #     printf '%b\n' "<p>hello </p>" > test.html
-    # - name: Push changes to repo
-    #   run: |
-    #     REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-    #     git config user.email "${{ github.actor }}@users.noreply.github.com"
-    #     git config user.name "${{ github.actor }}"
+  # download_cv:
+  #   name: download cv
+  #   runs-on; ubuntu-latest
+  #   needs: upload_file
+  #   steps:
+  #     - uses: actions/download-artifact@v1
+  #       with:
+  #         name: resume
+  #     - run: cat resume.pdf
 
-    #     git pull ${REMOTE}
-    #     git checkout master
-    #     git add .
-    #     git status
-    #     git commit -am "add cv"
-    #     git push ${REMOTE} master
+  # - uses: actions/checkout@master
+  #   with:
+  #     fetch-depth: 1
+  # - name: write to repo
+  #   run: |
+  #     printf '%b\n' "<p>hello </p>" > test.html
+  # - name: Push changes to repo
+  #   run: |
+  #     REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+  #     git config user.email "${{ github.actor }}@users.noreply.github.com"
+  #     git config user.name "${{ github.actor }}"
+
+  #     git pull ${REMOTE}
+  #     git checkout master
+  #     git add .
+  #     git status
+  #     git commit -am "add cv"
+  #     git push ${REMOTE} master
