@@ -123,7 +123,7 @@ jobs:
   job_2:
     name: download and write to repo
     needs: job_1
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download result for job 1
         uses: actions/download-artifact@v2
