@@ -129,7 +129,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: resume
-      - shell: bash
+        # - shell: bash
         run: |
           printf '%b\n' resume.pdf  > resume.pdf
           # cat resume.pdf
