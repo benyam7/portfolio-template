@@ -43,7 +43,7 @@ jobs:
           path: ${{ github.workspace }}/cv
 
       - name: write to repo
-        uses: actions/checkout@master
+        # uses: actions/checkout@master
         with:
           fetch-depth: 1
         run: |
