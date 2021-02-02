@@ -7,6 +7,7 @@ baseurl: "/"
 url: "https://benyam7.github.io/portfolio-template/"
 twitter_username: benyam_7
 github_username: benyam7
+portfolioURL:"https://benyam7.github.io/portfolio-template/"
 
 sass:
   sass_dir: _sass
