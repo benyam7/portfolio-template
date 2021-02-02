@@ -135,6 +135,18 @@ jobs:
           # cat resume.pdf
           # value=`cat math-homework.txt`
           # expr $value \* 9 > math-homework.txt
+
+      - name: Push changes to repo
+        run: |
+          REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
+          git pull ${REMOTE}
+          git checkout master
+          git add .
+          git status
+          git commit -am "Add new comment"
+          git push ${REMOTE} master
       # - name: Upload math result for job 2
       #   uses: actions/upload-artifact@v2
       #   with:
