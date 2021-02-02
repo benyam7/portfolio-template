@@ -37,27 +37,38 @@ jobs:
           portfolioURL=$(grep 'url:' _config.yml | tail -n1 | awk '{ print s $2}' | tr -d \")
           echo xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf > resume.pdf
           cd ..
+
       - name: Archive convert results
         uses: actions/upload-artifact@v2
         with:
           name: resume
           path: cv
 
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
-      - name: write to repo
-        run: |
-          printf '%b\n' "<p>hello </p>" > test.html
-      - name: Push changes to repo
-        run: |
-          REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git config user.name "${{ github.actor }}"
+    download_cv:
+      name: download cv
+      runs-on; ubuntu-latest
+      needs: build
+      steps:
+        - uses: actions/download-artifact@v1
+          with:
+            name: resume
+        - run: cat resume.pdf
 
-          git pull ${REMOTE}
-          git checkout master
-          git add .
-          git status
-          git commit -am "add cv"
-          git push ${REMOTE} master
+      # - uses: actions/checkout@master
+      #   with:
+      #     fetch-depth: 1
+      # - name: write to repo
+      #   run: |
+      #     printf '%b\n' "<p>hello </p>" > test.html
+      # - name: Push changes to repo
+      #   run: |
+      #     REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+      #     git config user.email "${{ github.actor }}@users.noreply.github.com"
+      #     git config user.name "${{ github.actor }}"
+
+      #     git pull ${REMOTE}
+      #     git checkout master
+      #     git add .
+      #     git status
+      #     git commit -am "add cv"
+      #     git push ${REMOTE} master
