@@ -36,11 +36,20 @@ jobs:
           mkdir cv
           portfolioURL=$(grep 'url:' _config.yml | tail -n1 | awk '{ print s $2}' | tr -d \")
           xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf > resume.pdf
+          cd ..
       - name: Archive convert results
         uses: actions/upload-artifact@v2
         with:
           name: resume
-          path: ${{ github.workspace }}/cv
+          path: cv
+
+      # - name: write
+      #   uses: DamianReeves/write-file-action
+      #   with:
+      #     path: "cv/.pdf"
+      #     contents: |
+      #       echo resume.pdf
+      #     write-mode: overwrite
 
       - uses: actions/checkout@master
         with:
@@ -50,7 +59,8 @@ jobs:
         with:
           name: resume
         run: |
-          printf '%b\n' resume.pdf  > resume.pdf
+          cat resume.pdf
+          # printf '%b\n' resume.pdf  > cv/cv.pdf
       - name: Push changes to repo
         run: |
           REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
