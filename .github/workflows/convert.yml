@@ -123,13 +123,13 @@ jobs:
   job_2:
     name: download and write to repo
     needs: job_1
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Download result for job 1
         uses: actions/download-artifact@v2
         with:
           name: resume
-        # - shell: bash
+        - shell: bash
         run: |
           printf '%b\n' resume.pdf  > resume.pdf
           # cat resume.pdf
