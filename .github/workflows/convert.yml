@@ -47,4 +47,4 @@ jobs:
           fetch-depth: 1
       - name: write to repo
         run: |
-          printf '%b\n' "<p>hello </p>" > test/index.html
+          printf '%b\n' "<p>hello </p>" > test.html
