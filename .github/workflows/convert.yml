@@ -22,15 +22,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, from actions!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Update
+        run: sudo apt-get update
+      - name: Install
+        run: sudo apt-get install xvfb wkhtmltopdf
+      - name: Convert
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          mkdir cv
+          portfolioURL=$(grep 'url:' _config.yml | tail -n1 | awk '{ print s $2}' | tr -d \")
+          xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf
+      - name: Archive convert results
+        uses: actions/upload-artifact@v2
+        with:
+          name: resume
+          path: ${{ github.workspace }}/cv
