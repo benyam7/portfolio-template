@@ -130,7 +130,7 @@ jobs:
         with:
           name: resume
         - shell: bash
-        - uses: actions/checkout@master
+      - uses: actions/checkout@master
           with:
             fetch-depth: 1
       - name: turn in to file
