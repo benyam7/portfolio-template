@@ -47,11 +47,4 @@ jobs:
         with:
           fetch-depth: 1
         run: |
-    # ID=${{ github.event.comment.id }}
-    # AUTHOR=${{ github.event.comment.user.login }}
-    # DATE=${{ github.event.comment.created_at }}
-    # COMMENT=$(echo "${{ github.event.comment.body }}")
-    # NO_TAGS=${COMMENT//[<>]/\`}
-    # FOLDER=comments
-
-    printf '%b\n' "<div class=\"comment\"><p>test </p></div>\r\n" > newFolder/test.html
+          printf '%b\n' "<p>hello </p>" > test/index.html
