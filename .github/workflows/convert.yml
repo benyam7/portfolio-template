@@ -37,7 +37,20 @@ jobs:
           portfolioURL=$(grep 'url:' _config.yml | tail -n1 | awk '{ print s $2}' | tr -d \")
           xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf
       - name: Archive convert results
-        uses: actions/download-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: resume
           path: ${{ github.workspace }}/cv
+      - name: write to repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+        run: |
+    # ID=${{ github.event.comment.id }}
+    # AUTHOR=${{ github.event.comment.user.login }}
+    # DATE=${{ github.event.comment.created_at }}
+    # COMMENT=$(echo "${{ github.event.comment.body }}")
+    # NO_TAGS=${COMMENT//[<>]/\`}
+    # FOLDER=comments
+
+    printf '%b\n' "<div class=\"comment\"><p>test </p></div>\r\n" > newFolder/test.html
