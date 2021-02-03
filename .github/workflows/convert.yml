@@ -31,13 +31,13 @@ jobs:
           xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf
           pwd
           ls cv
-          cd ..
+          # cd ..
           ls
       - name: Archive convert results
         uses: actions/upload-artifact@v2
         with:
           name: resume
-          path: resume.pdf
+          path: ${{ github.workspace }}/cv
 
   job_2:
     name: download and write to repo
