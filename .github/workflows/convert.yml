@@ -26,10 +26,13 @@ jobs:
         run: sudo apt-get install xvfb wkhtmltopdf
       - name: Convert
         run: |
-          # mkdir cv
+          mkdir cv
           portfolioURL=$(grep 'url:' _config.yml | tail -n1 | awk '{ print s $2}' | tr -d \")
-          xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf > resume.pdf
-          # cd ..
+          xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf
+          pwd
+          ls
+          cd ..
+          ls
       - name: Archive convert results
         uses: actions/upload-artifact@v2
         with:
