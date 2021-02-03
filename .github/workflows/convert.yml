@@ -57,7 +57,8 @@ jobs:
 
           # mkdir test
 
-          mv -f /d/a/portfolio-template/portfolio-template/resume.pdf ${{github.workspace}}
+          # mv -f /d/a/portfolio-template/portfolio-template/resume.pdf ${{github.workspace}}
+          echo /d/a/portfolio-template/portfolio-template/resume.pdf > ${{github.workspace}}
   job_3:
     name: push changes
     needs: job_2
