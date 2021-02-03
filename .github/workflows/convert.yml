@@ -47,7 +47,7 @@ jobs:
           name: resume
       - shell: bash
         run: |
-          mv -f resume.pdf portfolio-template/cv
+          mv -f resume.pdf  ${{ github.workspace }}/
 
   job_3:
     name: push changes
