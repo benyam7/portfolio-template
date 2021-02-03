@@ -24,6 +24,9 @@ jobs:
         run: sudo apt-get update
       - name: Install
         run: sudo apt-get install xvfb wkhtmltopdf
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
       - name: Convert
         run: |
           mkdir cv
