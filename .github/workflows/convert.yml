@@ -50,9 +50,10 @@ jobs:
           name: resume
       - shell: bash
         run: |
+          pwd
           ls
-          mkdir test
-          cd test
+          # mkdir test
+          # cd test
           mv -f resume.pdf  test/
 
   job_3:
