@@ -54,7 +54,7 @@ jobs:
           ls
           # mkdir test
           # cd test
-          mv -f resume.pdf  test/
+          # mv -f resume.pdf  test/
 
   job_3:
     name: push changes
