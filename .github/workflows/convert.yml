@@ -51,11 +51,11 @@ jobs:
       - shell: bash
         run: |
           pwd
-          ls
+          ls D:\a\portfolio-template\portfolio-template
 
-          mkdir test
+          # mkdir test
 
-          mv -f /home/runner/work/portfolio-template/portfolio-template/cv/resume.pdf  test/
+          # mv -f /home/runner/work/portfolio-template/portfolio-template/cv/resume.pdf  test/
   job_3:
     name: push changes
     needs: job_2
