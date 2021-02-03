@@ -30,7 +30,7 @@ jobs:
           portfolioURL=$(grep 'url:' _config.yml | tail -n1 | awk '{ print s $2}' | tr -d \")
           xvfb-run wkhtmltopdf ${portfolioURL} cv/resume.pdf
           pwd
-          ls
+          ls cv
           cd ..
           ls
       - name: Archive convert results
@@ -50,6 +50,7 @@ jobs:
           name: resume
       - shell: bash
         run: |
+          ls
           mkdir test
           cd test
           mv -f resume.pdf  test/
