@@ -52,9 +52,10 @@ jobs:
         run: |
           pwd
           ls
+          ls ${{github.workspace}}
           # mkdir test
           # cd test
-          # mv -f resume.pdf  test/
+          # mv -f resume.pdf  ${{github.workspace/cv}}
 
   job_3:
     name: push changes
