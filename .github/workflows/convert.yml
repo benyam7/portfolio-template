@@ -51,7 +51,9 @@ jobs:
       - shell: bash
         run: |
           pwd
-          ls D:\a\portfolio-template\portfolio-template
+          ls /d/a/portfolio-template/portfolio-template
+          echo "all "
+          ls
 
           # mkdir test
 
