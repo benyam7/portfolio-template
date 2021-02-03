@@ -33,42 +33,6 @@ jobs:
           ls cv
           # cd ..
           ls
-      - name: Archive convert results
-        uses: actions/upload-artifact@v2
-        with:
-          name: resume
-          path: /home/runner/work/portfolio-template/portfolio-template/cv
-
-  job_2:
-    name: download and write to repo
-    needs: job_1
-    runs-on: windows-latest
-    steps:
-      - name: Download result for job 1
-        uses: actions/download-artifact@v2
-        with:
-          name: resume
-      - shell: bash
-        run: |
-          pwd
-          ls /d/a/portfolio-template/portfolio-template
-          echo "all "
-          ls
-
-          mkdir test
-          mv -f /d/a/portfolio-template/portfolio-template/resume.pdf /test
-          mv -f /d/a/portfolio-template/portfolio-template/resume.pdf ${{github.workspace}}
-          # echo /d/a/portfolio-template/portfolio-template/resume.pdf > ${{github.workspace}}
-  job_3:
-    name: push changes
-    needs: job_2
-    runs-on: macOS-latest
-    steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
-      - name: Push changes to repo
-        run: |
           REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git config user.name "${{ github.actor }}"
@@ -78,3 +42,49 @@ jobs:
           git status
           git commit -am "Add new comment"
           git push ${REMOTE} master
+
+      - name: Archive convert results
+        uses: actions/upload-artifact@v2
+        with:
+          name: resume
+          path: /home/runner/work/portfolio-template/portfolio-template/cv
+
+  # job_2:
+  #   name: download and write to repo
+  #   needs: job_1
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Download result for job 1
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: resume
+  #     - shell: bash
+  #       run: |
+  #         pwd
+  #         ls /d/a/portfolio-template/portfolio-template
+  #         echo "all "
+  #         ls
+
+  #         mkdir test
+  #         mv -f /d/a/portfolio-template/portfolio-template/resume.pdf /test
+  #         mv -f /d/a/portfolio-template/portfolio-template/resume.pdf ${{github.workspace}}
+  #         # echo /d/a/portfolio-template/portfolio-template/resume.pdf > ${{github.workspace}}
+  # job_3:
+  #   name: push changes
+  #   needs: job_2
+  #   runs-on: macOS-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+  #       with:
+  #         fetch-depth: 1
+  #     - name: Push changes to repo
+  #       run: |
+  #         REMOTE=https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+  #         git config user.email "${{ github.actor }}@users.noreply.github.com"
+  #         git config user.name "${{ github.actor }}"
+  #         git pull ${REMOTE}
+  #         git checkout master
+  #         git add .
+  #         git status
+  #         git commit -am "Add new comment"
+  #         git push ${REMOTE} master
